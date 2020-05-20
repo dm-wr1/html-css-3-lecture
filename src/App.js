@@ -2,6 +2,19 @@ import React from 'react'
 import './App.css'
 
 class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      isMobileMenuOpen: false,
+    }
+  }
+
+  toggleMobileMenu = () => {
+    this.setState({
+      isMobileMenuOpen: !this.state.isMobileMenuOpen,
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -21,13 +34,38 @@ class App extends React.Component {
               <li className="nav-list-item">Contact</li>
             </ul>
           </nav>
+          <nav className="mobile-nav">
+            <img
+              className="hamburger"
+              src="https://img.icons8.com/pastel-glyph/2x/hamburger.png"
+              alt="Hamburger"
+              onClick={this.toggleMobileMenu}
+            />
+            <ul
+              className={`mobile-nav-list ${
+                this.state.isMobileMenuOpen ? 'mobile-nav-list-open' : null
+              }`}
+            >
+              <li className="mobile-nav-list-item">Home</li>
+              <li className="mobile-nav-list-item">About</li>
+              <li className="mobile-nav-list-item">Contact</li>
+            </ul>
+          </nav>
         </header>
-        <div className="boxes-hold">
+        <div
+          className={`boxes-hold ${
+            this.state.isMobileMenuOpen ? 'hide-boxes' : null
+          }`}
+        >
           <div className="box box-1"></div>
           <div className="box box-2"></div>
           <div className="box box-3"></div>
         </div>
-        <div className="boxes-hold">
+        <div
+          className={`boxes-hold ${
+            this.state.isMobileMenuOpen ? 'hide-boxes' : null
+          }`}
+        >
           <div className="box box-4"></div>
           <div className="box box-5"></div>
           <div className="box box-6"></div>
